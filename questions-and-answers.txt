@@ -1,0 +1,36 @@
+- "Do not use any file/string parsing libraries"
+        Does this requirement extend to other libraries supporting testing, etc? For example mockito, cucumber, etc.
+This only applies to parsing the flat file data. Please feel free to use any other libraries/tooling
+
+
+- Lets double check if this is strictly a library or a service invoked after ingestion of input files?
+This is just the library that would be leveraged by the service(s) that are managing the files and data stores
+
+
+- diagram mentions archive but requirements state only that "Output: A collection of ProductRecord objects"
+        - Is archival records outside of this library responsibilities?
+You don’t need to do the archiving for this exercise, but ensure the design can accommodate the consumer adding an archiving capability and decide which stage(s) of extraction/transformation where you think that should happen.
+
+
+- "store publishes update journal files at most every 60 seconds" - if this is a transformation library what does this
+requirement implies?:
+        - is it a really a service that deals with IO (store of archives and works with DB somehow);
+        - does it need to be memory optimized and support 'streaming' API rather than request/response type of API?
+This is meant to provide some context around the throughput/pattern the system will need to handle and call out that data is ingested in batches and not a steady stream of data.
+
+
+- "assume that this is a formal third-party API contract that has been rigorously validated and if there are any
+ lines that don't adhere to the schema, they can be skipped."
+        - does it mean one and only one API contract?
+        - or support one contract for now but expect to support other contracts (formats) in the near future?
+        - 'skipped'
+                - as in no trace?
+                - just logging of such occurrences is enough?
+                - need to provide a way for a caller to register a 'onError' callback function?
+Yes, there’s only the one API contract for catalog data at this time. We may want to adapt the system to ingest other file formats at some point but it isn’t a hard requirement for this phase. Tracing or letting the caller register for a callback if the contract is broken are both good options.
+
+- "This object (ProductRecord) will be used to update the database"
+        - should this object include store ID - is not part of input format, but also is not clear who is responsible
+        for passing this through to the storage, is this just a format parsing library, or at a higher level and need to
+        produce ready to be stored objects?
+Who takes responsibility for associating a record with a store is an interesting topic of conversation.  You can make a design decision around whether the context should be passed down to the library or handled by the caller based on your experience/preference and we can talk about the options and what decision you made when we review the code.
