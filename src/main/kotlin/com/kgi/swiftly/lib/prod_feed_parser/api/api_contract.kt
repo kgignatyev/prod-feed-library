@@ -50,4 +50,4 @@ data class Currency(val v: BigDecimal, val currencySymbol: Char = '$')
 fun getParserFor( ): ProductFeedParser { return ProdFeedParserFactory.getParserForFeedFormat()}
 
 
-class ParsingException( val input:String, msg: String): Exception(msg )
+class ParsingException( val input:String, msg: String, cause:Throwable): Exception(msg, cause  )

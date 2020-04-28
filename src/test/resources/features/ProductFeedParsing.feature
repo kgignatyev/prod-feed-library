@@ -1,6 +1,12 @@
 Feature: we can parse field values
 
- Scenario Outline: The first flag in the left-to-right array is #1
+ Scenario: we can extract sequence of chars based on Field spec
+
+   Given string '12345678' and StringFieldSpec 1,5 we then extract '12345'
+
+
+ Scenario Outline: we can parse field of flags
+ The first flag in the left-to-right array is #1
  If Flag #3 is set, this is a per-weight item
  If Flag #5 is set, the item is taxable. Tax rate is always 7.775%
 
@@ -49,10 +55,17 @@ Feature: we can parse field values
 
 
 
-  Scenario: we can get standard parser
+  Scenario Outline: we can get standard parser
     Given 'standard' feed format
     And 'input-sample.txt' input file
     Then we can parse it without errors
+    And for '<Product ID>' we extracted proper '<Description>' , '<Tax Rate>'
+    Examples:
+      | Product ID |  Description                | Tax Rate |
+      | 80000001   | Kimchi-flavored white rice  |    0     |
+      | 14963801   | Generic Soda 12-pack        |  7.775   |
+      | 40123401   | Marlboro Cigarettes         |    0     |
+      | 50133333   | Fuji Apples (Organic)       |    0     |
 
 
 

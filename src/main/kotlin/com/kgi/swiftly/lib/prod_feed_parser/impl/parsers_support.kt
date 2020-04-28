@@ -17,7 +17,7 @@ data class PriceInputs( val price: Currency, val splitPrice:Currency, val numIte
 val ZERO_ZERO = BigDecimal("0.0")
 
 fun Currency.isZero():Boolean {
-    return v == ZERO || v == ZERO_ZERO
+    return v == ZERO || 0== (v.toDouble()*10000).toInt()
 }
 
 
@@ -31,8 +31,10 @@ fun PriceInputs.calcPrice(): Price?  {
     }else if( splitPrice.isZero()){
         Price(price,1)
     }else {
-        val calcPrice = splitPrice.v.divide(valueOf(numItems.toLong()), moneyMathContext)
-        Price( Currency(calcPrice.setScale(4, RoundingMode.HALF_DOWN), splitPrice.currencySymbol), numItems )
+        if( splitPrice.isZero() ) null else {
+            val calcPrice = splitPrice.v.divide(valueOf(numItems.toLong()), moneyMathContext)
+            Price(Currency(calcPrice.setScale(4, RoundingMode.HALF_DOWN), splitPrice.currencySymbol), numItems)
+        }
     }
 }
 

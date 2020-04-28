@@ -10,11 +10,21 @@ import java.math.RoundingMode
 
 
 
-open class FieldSpec( val startPositionInclusive:Int, val endPositionInclusive:Int )
+open class FieldSpec( val startPositionInclusive:Int, val endPositionInclusive:Int, val zeroBased:Boolean = false ) {
+    fun getSequenceFrom(lineChars: CharArray): CharArray {
+       val start = if(zeroBased) startPositionInclusive else startPositionInclusive -1
+       val end = if(zeroBased) endPositionInclusive+1 else endPositionInclusive
+       return  lineChars.copyOfRange( start, end)
+    }
+}
+
 class StringFieldSpec( startPositionInclusive:Int = 0, endPositionInclusive:Int = 1):FieldSpec( startPositionInclusive, endPositionInclusive)
 class IntFieldSpec( startPositionInclusive:Int = 0, endPositionInclusive:Int =1):FieldSpec( startPositionInclusive, endPositionInclusive)
 class ProductFlagsFieldSpec(startPositionInclusive:Int = 0, endPositionInclusive:Int = 1):FieldSpec( startPositionInclusive, endPositionInclusive)
 class CurrencyFieldSpec( startPositionInclusive:Int = 0, endPositionInclusive:Int = 1):FieldSpec( startPositionInclusive, endPositionInclusive)
+
+
+
 
 class FixedWidthFormatParser(val fieldSpecs: Collection<FieldSpec>) {
 
@@ -30,7 +40,7 @@ class FixedWidthFormatParser(val fieldSpecs: Collection<FieldSpec>) {
         val moneyMathContext = MathContext(4, RoundingMode.HALF_DOWN)
 
         fun extractDataFrom(lineChars: CharArray, fieldSpec: FieldSpec):Any {
-            return convertTo( fieldSpec, lineChars.copyOfRange( fieldSpec.startPositionInclusive, fieldSpec.endPositionInclusive))
+            return convertTo( fieldSpec, fieldSpec.getSequenceFrom( lineChars ))
         }
 
         fun convertTo(fieldSpec: FieldSpec, chars: CharArray): Any {

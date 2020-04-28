@@ -37,7 +37,7 @@ class StandardFeedParser() : ProductFeedParser() {
                     extractDataFrom(chars, CurrencyFieldSpec(97, 104)) as Currency,
                     extractDataFrom(chars, IntFieldSpec(115, 122)) as Int
             )
-            val flags = extractDataFrom(chars, IntFieldSpec(124, 132)) as ProductFlags
+            val flags = extractDataFrom(chars, ProductFlagsFieldSpec(124, 132)) as ProductFlags
             val productId = extractDataFrom(chars, StringFieldSpec(1, 8)) as String
             return ProductRecord(
                     id = productId,
@@ -51,7 +51,7 @@ class StandardFeedParser() : ProductFeedParser() {
                     taxRatePercents = findTaxRateFor(productId, flags.taxable)
             )
         } catch (e: Exception) {
-            throw ParsingException(line, e.message ?: "no message")
+            throw ParsingException(line, e.message ?: "no message",e)
         }
     }
 
