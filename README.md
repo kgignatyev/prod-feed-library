@@ -33,6 +33,7 @@ build
 
         mvn clean package dokka:dokka
         
+test results are visible by opening [target/cucumber/index.html](target/cucumber/index.html),
 
 documentation is generated in [target/dokka](target/dokka) folder
 
