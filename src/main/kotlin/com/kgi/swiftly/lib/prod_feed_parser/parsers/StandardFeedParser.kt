@@ -29,7 +29,7 @@ class StandardFeedParser() : ProductFeedParser() {
             val regularPriceComponents = PriceInputs(
                     extractDataFrom(chars, CurrencyFieldSpec(70, 77)) as Currency,
                     extractDataFrom(chars, CurrencyFieldSpec(88, 95)) as Currency,
-                    extractDataFrom(chars, IntFieldSpec(88, 95)) as Int
+                    extractDataFrom(chars, IntFieldSpec(106, 113)) as Int
             )
 
             val promoPriceComponents = PriceInputs(

@@ -47,7 +47,9 @@ data class ProductFlags( val taxable: YN = YN.N, val perWeight: YN = YN.N )
 
 data class Currency(val v: BigDecimal, val currencySymbol: Char = '$')
 
-fun getParserFor( ): ProductFeedParser { return ProdFeedParserFactory.getParserForFeedFormat()}
-
+/**
+ * main method for using library
+ */
+fun getParserFor(ff: FeedFormat = FeedFormat.STANDARD): ProductFeedParser { return ProdFeedParserFactory.getParserForFeedFormat(ff)}
 
 class ParsingException( val input:String, msg: String, cause:Throwable): Exception(msg, cause  )
