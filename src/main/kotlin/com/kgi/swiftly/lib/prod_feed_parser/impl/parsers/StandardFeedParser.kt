@@ -1,11 +1,13 @@
-package com.kgi.swiftly.lib.prod_feed_parser.parsers
+package com.kgi.swiftly.lib.prod_feed_parser.impl.parsers
 
-import com.kgi.swiftly.lib.prod_feed_parser.api.*
+import com.kgi.swiftly.lib.prod_feed_parser.api.Currency
+import com.kgi.swiftly.lib.prod_feed_parser.api.ParsingException
+import com.kgi.swiftly.lib.prod_feed_parser.api.ProductFlags
+import com.kgi.swiftly.lib.prod_feed_parser.api.ProductRecord
 import com.kgi.swiftly.lib.prod_feed_parser.impl.PriceInputs
 import com.kgi.swiftly.lib.prod_feed_parser.impl.calcPrice
 import com.kgi.swiftly.lib.prod_feed_parser.impl.displayPrice
-import com.kgi.swiftly.lib.prod_feed_parser.parsers.FixedWidthFormatParser.Companion.extractDataFrom
-import java.lang.Exception
+import com.kgi.swiftly.lib.prod_feed_parser.impl.parsers.FixedWidthFormatParser.Companion.extractDataFrom
 
 /**
  *

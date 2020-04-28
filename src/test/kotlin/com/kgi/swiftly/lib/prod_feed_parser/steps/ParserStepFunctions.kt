@@ -8,8 +8,8 @@ import com.kgi.swiftly.lib.prod_feed_parser.api.*
 import com.kgi.swiftly.lib.prod_feed_parser.impl.PriceInputs
 import com.kgi.swiftly.lib.prod_feed_parser.impl.calcPrice
 import com.kgi.swiftly.lib.prod_feed_parser.impl.displayPrice
-import com.kgi.swiftly.lib.prod_feed_parser.parsers.*
-import com.kgi.swiftly.lib.prod_feed_parser.parsers.FixedWidthFormatParser.Companion.moneyMathContext
+import com.kgi.swiftly.lib.prod_feed_parser.impl.parsers.*
+import com.kgi.swiftly.lib.prod_feed_parser.impl.parsers.FixedWidthFormatParser.Companion.moneyMathContext
 import io.cucumber.java.en.And
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then

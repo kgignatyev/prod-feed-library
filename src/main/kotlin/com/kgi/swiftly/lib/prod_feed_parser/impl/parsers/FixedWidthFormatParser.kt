@@ -1,13 +1,11 @@
-package com.kgi.swiftly.lib.prod_feed_parser.parsers
+package com.kgi.swiftly.lib.prod_feed_parser.impl.parsers
 
 import com.kgi.swiftly.lib.prod_feed_parser.api.Currency
 import com.kgi.swiftly.lib.prod_feed_parser.api.ProductFlags
 import com.kgi.swiftly.lib.prod_feed_parser.api.YN
-import java.lang.Exception
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
-
 
 
 open class FieldSpec( val startPositionInclusive:Int, val endPositionInclusive:Int, val zeroBased:Boolean = false ) {

@@ -1,9 +1,8 @@
 package com.kgi.swiftly.lib.prod_feed_parser.api
 
-import com.kgi.swiftly.lib.prod_feed_parser.parsers.ProdFeedParserFactory
-import com.kgi.swiftly.lib.prod_feed_parser.parsers.ProductFeedParser
+import com.kgi.swiftly.lib.prod_feed_parser.impl.parsers.ProdFeedParserFactory
+import com.kgi.swiftly.lib.prod_feed_parser.impl.parsers.ProductFeedParser
 import java.math.BigDecimal
-
 
 enum class FeedType {
     STANDARD
@@ -37,7 +36,6 @@ data class ProductRecord(val id: String,
                          val taxRatePercents: BigDecimal
 )
 
-data class ParseError(val line: String, val reason: String)
 
 enum class YN {
     Y, N
@@ -52,4 +50,4 @@ data class Currency(val v: BigDecimal, val currencySymbol: Char = '$')
  */
 fun getParserFor(ff: FeedFormat = FeedFormat.STANDARD): ProductFeedParser { return ProdFeedParserFactory.getParserForFeedFormat(ff)}
 
-class ParsingException( val input:String, msg: String, cause:Throwable): Exception(msg, cause  )
+class ParsingException( val input:String, msg: String, cause:Throwable): Exception("input $input caused $msg", cause  )

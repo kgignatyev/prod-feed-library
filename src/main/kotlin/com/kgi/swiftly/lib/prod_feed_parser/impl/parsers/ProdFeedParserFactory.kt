@@ -1,11 +1,9 @@
-package com.kgi.swiftly.lib.prod_feed_parser.parsers
+package com.kgi.swiftly.lib.prod_feed_parser.impl.parsers
 
 import com.kgi.swiftly.lib.prod_feed_parser.api.*
 import com.kgi.swiftly.lib.prod_feed_parser.api.FeedFormat.Companion.STANDARD
-import com.kgi.swiftly.lib.prod_feed_parser.parsers.FixedWidthFormatParser.Companion.moneyMathContext
+import com.kgi.swiftly.lib.prod_feed_parser.impl.parsers.FixedWidthFormatParser.Companion.moneyMathContext
 import java.math.BigDecimal
-import java.math.MathContext
-import java.math.RoundingMode
 
 
 abstract class ProductFeedParser() {

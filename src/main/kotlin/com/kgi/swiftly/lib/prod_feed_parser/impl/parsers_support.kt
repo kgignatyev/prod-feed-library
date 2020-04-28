@@ -2,11 +2,9 @@ package com.kgi.swiftly.lib.prod_feed_parser.impl
 
 import com.kgi.swiftly.lib.prod_feed_parser.api.Currency
 import com.kgi.swiftly.lib.prod_feed_parser.api.Price
-import com.kgi.swiftly.lib.prod_feed_parser.parsers.FixedWidthFormatParser.Companion.moneyMathContext
-import java.math.BigDecimal
+import com.kgi.swiftly.lib.prod_feed_parser.impl.parsers.FixedWidthFormatParser.Companion.moneyMathContext
 import java.math.BigDecimal.ZERO
 import java.math.BigDecimal.valueOf
-import java.math.MathContext
 import java.math.RoundingMode
 import java.text.NumberFormat
 import java.util.*
@@ -14,7 +12,6 @@ import java.util.*
 
 data class PriceInputs( val price: Currency, val splitPrice:Currency, val numItems:Int =1)
 
-val ZERO_ZERO = BigDecimal("0.0")
 
 fun Currency.isZero():Boolean {
     return v == ZERO || 0== (v.toDouble()*10000).toInt()
